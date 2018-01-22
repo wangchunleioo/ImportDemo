@@ -1,7 +1,7 @@
 package com.importdemo;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,11 +10,12 @@ import android.widget.TextView;
 
 import com.importdemolibrary.Calculate;
 import com.importdemolibrary.L;
+import com.importdemolibrary.MyDialog;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener {
     @Bind(R.id.et1)
     EditText mEt1;
     @Bind(R.id.et2)
@@ -53,13 +54,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             switch (view.getId()) {
                 case R.id.btn_add:
                     mTv.setText("" + Calculate.add(mEt1.getText().toString(), mEt2.getText().toString()));
+//                    MyDialog.showDialogo(MainActivity.this, "正在加载...");
                     break;
                 case R.id.btn_sub:
                     mTv.setText("" + Calculate.sub(mEt1.getText().toString(), mEt2.getText().toString()));
+                    MyDialog.dismiss();
                     break;
                 case R.id.btn_mul:
                     try {
-                        mTv.setText("" + Calculate.mul(mEt1.getText().toString(), mEt2.getText().toString(),2));
+                        mTv.setText("" + Calculate.mul(mEt1.getText().toString(), mEt2.getText().toString(), 2));
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
